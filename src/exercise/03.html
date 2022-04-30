@@ -1,0 +1,35 @@
+<!-- Using JSX -->
+<!-- http://localhost:3000/isolated/exercise/03.html -->
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
+
+  <script type="text/babel">
+
+    // 🐨 re-implement this using JSX!
+    const element = React.createElement('div', {
+      className: 'container',
+      children: 'Hello World',
+    })
+
+    // const jsxEl = <div className="container">Hello World Jsx</div>
+
+    // ::: Extra Credit 1 ::: 
+    const className = 'container'
+    const children = 'Hello World Extra Credit'
+    // const jsxEl= <div className={className}>{children}</div>
+
+    // ::: Extra Credit 2 ::: 
+    const props = {children, className}
+    const jsxEl = <div {...props}/> 
+
+    // 📜 You can learn the differences between JSX and HTML syntax from the React docs here:
+    // https://reactjs.org/docs/dom-elements.html#differences-in-attributes
+
+    ReactDOM.render(jsxEl, document.getElementById('root'))
+  </script>
+</body>
