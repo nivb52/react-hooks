@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+coverage
+build
+.idea/
+.vscode/
+.eslintcache
+
+
+README.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+.all-contributorsrc
+.github/
