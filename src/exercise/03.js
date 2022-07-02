@@ -12,7 +12,7 @@ ToggleContext.displayName = 'ToggleContext'
 
 function useToggle() {
   const context = React.useContext(ToggleContext)
-  if (!context) {
+  if (context === undefined) {
     throw Error('useToggle must be used within <Toggle />')
   }
 
