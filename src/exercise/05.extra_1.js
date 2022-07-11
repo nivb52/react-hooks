@@ -26,9 +26,15 @@ function toggleReducer(state, {type, initialState}) {
 // 🐨 add a new option called `reducer` that defaults to `toggleReducer`
 function useToggle({initialOn = false} = {}, reducer = toggleReducer) {
   const {current: initialState} = React.useRef({on: initialOn})
-  // 🐨 instead of passing `toggleReducer` here, pass the `reducer` that's
-  // provided as an option
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const combinedReducer = (state, action) => {
+    const propReducerResult = reducer(state, action)
+    if (propReducerResult === undefined) {
+      return toggleReducer(state, action)
+    }
+    return propReducerResult
+  }
+
+  const [state, dispatch] = React.useReducer(combinedReducer, initialState)
   const {on} = state
 
   const toggle = () => dispatch({type: 'toggle'})
@@ -70,11 +76,8 @@ function App() {
         }
         return {on: !state.on}
       }
-      case 'reset': {
-        return {on: false}
-      }
       default: {
-        throw new Error(`Unsupported type: ${action.type}`)
+        return undefined
       }
     }
   }
